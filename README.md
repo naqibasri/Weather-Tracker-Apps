@@ -10,13 +10,14 @@ A web application that allows users to track weather updates in real-time for th
 
 ### Diagram
 
+```
 User 
 |-> Web Application (Hosted on Azure App Service Web App)
    |-> Weather Alerts (Azure Functions)
       |-> Docker Images (Azure Container Registry)
          |-> Testing Containers (Azure Container Instance)
             |-> Running Containers (Azure Container Apps)
-
+```
 
 
 ### Implementation Guide 
