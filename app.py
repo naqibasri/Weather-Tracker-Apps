@@ -17,6 +17,8 @@ BASE_URL = "https://api.openweathermap.org/data/2.5/weather" #"https://api.openw
 def home():
     weather_data = None
     error = None
+    city = None
+    dt_object = None
 
     if request.method == "POST":
         city = request.form.get("city")
@@ -24,7 +26,7 @@ def home():
             
             try:
                 coordinates = coordinate.get_coordinates(city)
-                response = requests.get(BASE_URL, params={"lat": coordinates[0],"lon": coordinates[1],"units": "metric","appid": API_KEY}) #, "units": "metric"
+                response = requests.get(BASE_URL, params={"lat": coordinates[0],"lon": coordinates[1],"units": "metric","appid": API_KEY})
                 response.raise_for_status()
                 weather_data = response.json()
                 dt = weather_data['dt']
@@ -34,7 +36,7 @@ def home():
         else:
             error = "Please enter a city name."
 
-    return render_template("index.html", weather_data=weather_data, city=city, dt_object=dt_object, error=error)
+    return render_template("index.html", weather_data=weather_data, city=city,dt_object=dt_object , error=error)
 
 if __name__ == "__main__":
     app.run(debug=True)
