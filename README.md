@@ -20,7 +20,7 @@ User
 ```
 
 
-### Implementation Guide 
+### Implementation step-by-step 
 1. Create an Azure App Service Web App.
 2. Develop a basic web application that uses weather APIs.
 3. Containerize the application.
