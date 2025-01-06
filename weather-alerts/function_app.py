@@ -53,11 +53,14 @@ def SendWeatherAlert(req: func.HttpRequest) -> func.HttpResponse:
 
         # Check if the temperature exceeds the threshold
         if current_temp > threshold_temp:
-            alert_message = f"Alert! The temperature in {city} is {current_temp}°C, which exceeds the threshold of {threshold_temp}°C."
+            alert_message = f"Alert! The temperature in {city} is {current_temp} degree C, which exceeds the threshold of {threshold_temp} degree C."
         else:
-            alert_message = f"The temperature in {city} is {current_temp}°C. No alert."
+            alert_message = f"The temperature in {city} is {current_temp} degree C. No alert."
 
-        return func.HttpResponse(alert_message, status_code=200)
+        return func.HttpResponse(json.dumps({"status": "success", "message": alert_message}),
+                                 status_code=200,
+                                 mimetype="application/json"
+                                )
 
     except requests.exceptions.RequestException as req_err:
         logging.error(f"Request error occurred: {req_err}")

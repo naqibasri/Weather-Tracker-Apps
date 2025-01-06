@@ -7,17 +7,14 @@
 </head>
 <body>
     <h1>Weather Tracker</h1>
-    <form method="POST">
-        <input type="text" name="city" placeholder="Enter city name" required>
-        <button type="submit">Get Weather</button>
+    <form action="/trigger-alert" method="POST">
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required>
+        <br>
+        <label for="threshold_temp">Threshold Temperature (°C):</label>
+        <input type="number" id="threshold_temp" name="threshold_temp" required>
+        <br>
+        <button type="submit">Trigger Alert</button>
     </form>
-
-    {% if weather_data %}
-        <h2>Weather in {{ city }} on {{ dt_object }}</h2>
-        <p>Temperature: {{ weather_data.main.temp }}°C</p>
-        <p>Weather: {{ weather_data.weather[0].description }}</p>
-    {% elif error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
 </body>
 </html>
